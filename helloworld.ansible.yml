@@ -1,0 +1,18 @@
+---
+- name: Update and upgrade apt packages, gather host facts
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Upgrade all packages (dist-upgrade)
+      ansible.builtin.apt:
+        upgrade: dist
+
+    - name: Get OS distribution information
+      ansible.builtin.command: lsb_release -a
+      register: os_info
