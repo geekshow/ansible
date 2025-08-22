@@ -1,0 +1,16 @@
+---
+- name: Install base packages
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: install base apt packages
+      ansible.builtin.apt:
+        pkg:
+        - curl
+        - vim
+        - zsh
+        - lm-sensors
+        - tmux
+        - htop
