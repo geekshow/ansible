@@ -13,4 +13,4 @@ This repository contains an Ansible inventory file (`inventory.ini`) that define
 To use this inventory with Ansible, specify the inventory file in your command:
 
 ```bash
-ansible -i inventory.ini all -m ping
+ansible-playbook updates.ansible.yml -i inventory.ini --ask-become-pass
