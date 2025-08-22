@@ -1,5 +1,5 @@
 ---
-- name: Update and upgrade apt packages, gather host facts
+- name: Apt update and dist-upgrade
   hosts: all
   become: yes
   gather_facts: yes
@@ -12,7 +12,3 @@
     - name: Upgrade all packages (dist-upgrade)
       ansible.builtin.apt:
         upgrade: dist
-
-    - name: Get OS distribution information
-      ansible.builtin.command: lsb_release -a
-      register: os_info
