@@ -1,16 +1,22 @@
 ---
 - name: Install base packages
-  hosts: all
-  become: yes
-  gather_facts: yes
+  hosts: kubernetes
+  become: true
+  gather_facts: true
 
   tasks:
-    - name: install base apt packages
+    - name: Install base apt packages
       ansible.builtin.apt:
         pkg:
-        - curl
-        - vim
-        - zsh
-        - lm-sensors
-        - tmux
-        - htop
+          - curl
+          - vim
+          - zsh
+          - lm-sensors
+          - tmux
+          - htop
+
+    - name: Install oh-my-zsh
+      ansible.builtin.shell: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      args:
+        creates: /home/{{ ansible_user }}/.oh-my-zsh
